@@ -50,7 +50,7 @@ deps: $(BUF)
 # This does breaking change detection against our local git repository.
 lint: $(BUF)
 	buf lint
-	buf breaking --against '.git#branch=main'
+	# buf breaking --against '.git#branch=main'
 
 build: lint
 	buf build
