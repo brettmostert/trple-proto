@@ -1,7 +1,6 @@
 SHELL := /usr/bin/env bash -o pipefail
 
 PROJECT := trple-proto
-SSH_GIT := ssh://git@github.com/bufbuild/buf-example.git
 
 # This controls the version of buf to install and use.
 BUF_VERSION := 1.0.0-rc8
@@ -45,16 +44,13 @@ $(BUF):
 .DEFAULT_GOAL := lint
 
 # deps allows us to install deps without running any checks.
-
-.PHONY: deps
 deps: $(BUF)
 
 # local is what we run when testing locally.
 # This does breaking change detection against our local git repository.
-
 lint: $(BUF)
 	buf lint
-# buf breaking --against '.git#branch=master'
+	buf breaking --against '.git#branch=main'
 
 build: lint
 	buf build
@@ -67,4 +63,4 @@ clean:
 
 .NOTPARALLEL:
 
-.PHONY: sca static-code-analysis build lint clean
+.PHONY: build lint clean gen deps
