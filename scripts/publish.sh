@@ -14,7 +14,8 @@
 set -e
 PROJECT="trple-proto"
 REPOPATH=${REPOPATH-/tmp/$PROJECT}
-CURRENT_BRANCH=${CIRCLE_BRANCH-"branch-not-available"}
+CI_BRANCH=${CIRCLE_BRANCH-$(git branch --show-current)}
+CURRENT_BRANCH=${CI_BRANCH-"branch-not-available"}
 
 # Helper for adding a directory to the stack and echoing the result
 function enterDir {
@@ -56,6 +57,7 @@ function buildProtoForTypes {
 # compile process for each one
 function buildAll {
   echo "Buidling service's protocol buffers"
+
   rm -fr $REPOPATH
   mkdir -p $REPOPATH
   for d in out/*; do   
