@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package trple.product.v1;
+option go_package = "com.github/brettmostert/trple-proto-go/product/v1";
+
+
+service ProductService {
+  rpc FetchResponse (FetchResponseRequest) returns (stream FetchResponseResponse) {}
+}
+
+message FetchResponseRequest {
+  int32 id = 1;
+}
+
+message FetchResponseResponse {
+  string result = 1;
+}
