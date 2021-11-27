@@ -5,7 +5,7 @@ option go_package = "com.github/brettmostert/trple-proto-go/product/v1";
 
 service ProductService {
   rpc GetProductById(GetProductByIdRequest) returns (GetProductByIdResponse) {}
-  // rpc UpdateProduct(PutProductRequest) returns (UpdateProductResponse) {}
+  rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse) {}
   // rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse) {}  
 }
 
@@ -14,5 +14,13 @@ message GetProductByIdRequest {
 }
 
 message GetProductByIdResponse {
+
+}
+
+message UpdateProductRequest {
+
+}
+
+message UpdateProductResponse {
 
 }
