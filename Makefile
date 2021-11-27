@@ -61,6 +61,9 @@ gen: build clean
 clean:
 	rm -fr ./out
 
+publish: gen
+	@sh -c "'$(CURDIR)/scripts/publish.sh'"
+
 .NOTPARALLEL:
 
-.PHONY: build lint clean gen deps
+.PHONY: build lint clean gen deps publish
