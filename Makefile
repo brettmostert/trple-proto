@@ -36,6 +36,7 @@ $(BUF):
 	curl -sSL \
 		"https://github.com/bufbuild/buf/releases/download/v$(BUF_VERSION)/buf-$(UNAME_OS)-$(UNAME_ARCH)" \
 		-o "$(CACHE_BIN)/buf"
+
 	chmod +x "$(CACHE_BIN)/buf"
 	@rm -rf $(dir $(BUF))
 	@mkdir -p $(dir $(BUF))
@@ -50,13 +51,14 @@ deps: $(BUF)
 # This does breaking change detection against our local git repository.
 lint: $(BUF)
 	buf lint
-	buf breaking --against '.git#branch=main'
+	# buf breaking --against '.git#branch=main'
 
 build: lint
 	buf build
 
 gen: build clean
-	buf generate trple
+	buf generate proto
+	buf generate vendor/google
 
 clean:
 	rm -fr ./out
